@@ -258,7 +258,8 @@ signal rd_uart_s : std_logic;
 signal rx_empty_s : std_logic;
 signal uart_din_s : std_logic_vector(7 downto 0);
 signal dout : std_logic_vector(15 downto 0);
-
+signal i2c_scl_sniff1 : std_logic;
+signal i2c_sda_sniff1 : std_logic;
 --debug signals
 signal write_img:std_logic;
 signal no_frame_read:std_logic;
@@ -491,9 +492,15 @@ calc_res1 : entity work.calc_res
 		     vsync => vsync_H1,
 		     resX  => resX_H1,
 		     resY  => resY_H1);
-
-i2c_scl_sniff <=  scl_pc0;
-i2c_sda_sniff <=  sda_pc0; 
+i2c_scl_sniff<= i2c_scl_sniff1;
+i2c_sda_sniff<= i2c_sda_sniff1;
+process(clk)
+begin
+	if rising_edge(clk) then
+		i2c_scl_sniff1 <=  scl_pc0;
+		i2c_sda_sniff1 <=  sda_pc0;
+	end if;
+end process;
 
 edid_hack0 : entity work.edid_master_slave_hack
 	port map(rst_n       => rst_n,

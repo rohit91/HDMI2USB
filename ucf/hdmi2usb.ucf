@@ -14,8 +14,8 @@ TIMESPEC TS_clk = PERIOD "clk" 10 ns HIGH 50%;
 #INST "img_sel_comp/BUFGMUX_HDMI" TIG;
 #INST "img_sel_comp/BUFGMUX_PCLK" TIG;
 
-NET "i2c_scl_sniff" LOC="V16" | IOSTANDARD = LVCMOS33; #EXP_IO1_N
-NET "i2c_sda_sniff" LOC="U16" | IOSTANDARD = LVCMOS33; #EXP_IO1_P
+NET "i2c_scl_sniff" LOC="U8" | IOSTANDARD = LVCMOS33; #EXP_IO14_P
+NET "i2c_sda_sniff" LOC="V8" | IOSTANDARD = LVCMOS33; #EXP_IO14_N
 
 ########################################
 # LEDs
@@ -57,6 +57,8 @@ NET "btnc" LOC = "F5" |IOSTANDARD = LVCMOS33; #center
 NET "scl_pc0"  LOC = "M16" |pullup |IOSTANDARD = LVCMOS33 ;
 NET "sda_pc0"  LOC = "M18" |pullup |IOSTANDARD = LVCMOS33 ;
 
+# SCL_LCD0 is being actively driven by EDID_MASTER since LCD is the slave
+# here and HDMI2USB is master. So we don't need pullup for this net.
 NET "scl_lcd0"  LOC = "D9" |IOSTANDARD = LVCMOS33 ;
 NET "sda_lcd0"  LOC = "C9" |pullup |IOSTANDARD = LVCMOS33 ;
 
