@@ -151,6 +151,9 @@ port
 	rx : in std_logic;
 	tx : out std_logic;
 
+	i2c_scl_sniff : out std_logic;
+	i2c_sda_sniff : out std_logic;
+	
 	rst_n : in std_logic;
 	clk	: in std_logic
 );
@@ -489,6 +492,8 @@ calc_res1 : entity work.calc_res
 		     resX  => resX_H1,
 		     resY  => resY_H1);
 
+i2c_scl_sniff <=  scl_pc0;
+i2c_sda_sniff <=  sda_pc0; 
 
 edid_hack0 : entity work.edid_master_slave_hack
 	port map(rst_n       => rst_n,

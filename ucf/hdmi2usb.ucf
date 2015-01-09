@@ -14,7 +14,8 @@ TIMESPEC TS_clk = PERIOD "clk" 10 ns HIGH 50%;
 #INST "img_sel_comp/BUFGMUX_HDMI" TIG;
 #INST "img_sel_comp/BUFGMUX_PCLK" TIG;
 
-
+NET "i2c_scl_sniff" LOC="V16" | IOSTANDARD = LVCMOS33; #EXP_IO1_N
+NET "i2c_sda_sniff" LOC="U16" | IOSTANDARD = LVCMOS33; #EXP_IO1_P
 
 ########################################
 # LEDs
